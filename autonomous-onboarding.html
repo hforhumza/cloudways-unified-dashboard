@@ -126,15 +126,41 @@ h1{font-size:20px;font-weight:600;line-height:28px}
 @media(max-width:1150px){.plans{grid-template-columns:repeat(2,1fr)}.cfg{flex-direction:column}.sum{width:100%}.regs{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.plans,.tabs{grid-template-columns:1fr}.wrap{padding:32px 20px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:2s!important}}
+
+/* dashboard navigation: left sidebar + top-bar icons (same as the dashboard) */
+.top-right .icons{width:132px;height:24px;display:block}
+.gside{position:fixed;top:48px;left:0;bottom:0;width:88px;border-right:1px solid #eff0f3;display:flex;flex-direction:column;justify-content:space-between;padding:20px 0;background:#fff;z-index:11;overflow-y:auto}
+.gside nav{display:flex;flex-direction:column;align-items:center;gap:12px}
+.gside a{display:block;border-radius:4px;transition:background .15s}
+.gside a:hover,.gside a.on{background:#f5f5fc}
+.gside img{display:block}
+@media(max-width:700px){.gside{display:none}.top-right .icons{display:none}}
+.page{inset:48px 0 0 88px}
+@media(max-width:700px){.page{left:0}}
 </style>
 </head>
 <body>
 <header class="topbar">
   <a href="index.html" aria-label="Cloudways home"><img class="logo" src="assets/logo.png?v=4" alt="Cloudways by DigitalOcean"></a>
   <div class="top-right">
+    <img class="icons" src="assets/top-icons.svg" alt="">
+    <span class="vline"></span>
     <a class="user" href="login.html" title="Log out" aria-label="John Doe, log out"><img class="avatar" src="assets/avatar.png" alt=""><img class="chev" src="assets/chevron.svg" alt=""></a>
   </div>
 </header>
+<aside class="gside" aria-label="Main navigation">
+  <nav>
+    <a href="index.html"><img src="assets/nav-home.png?v=4" alt="Home" width="65"></a>
+    <a href="index.html#flex"><img src="assets/nav-flexible.png?v=4" alt="Flexible" width="65"></a>
+    <a href="index.html#auto" class="on" aria-current="page"><img src="assets/nav-autonomous.png?v=4" alt="Autonomous" width="65"></a>
+    <a href="index.html#vel"><img src="assets/nav-velocity.png?v=4" alt="Velocity" width="65"></a>
+    <a href="index.html#ai"><img src="assets/nav-ai.png?v=4" alt="Cloudways AI" width="66"></a>
+  </nav>
+  <nav>
+    <a href="api.html"><img src="assets/nav-integrations.png?v=4" alt="Integrations" width="65"></a>
+    <a href="#"><img src="assets/nav-support.png?v=4" alt="Support" width="65"></a>
+  </nav>
+</aside>
 <img class="bg" src="assets/autonomous/bg.svg" alt="">
 <a class="close" id="close" href="launchpad.html" aria-label="Close"><img src="assets/onboarding/close.svg" alt=""></a>
 <div class="page"><div class="wrap" id="root"></div></div>

@@ -115,15 +115,42 @@ h1{font-size:20px;font-weight:600;line-height:36px;margin-top:0}
 @media(max-width:1100px){.col{padding:24px 24px 40px;width:100%}.sizes{grid-template-columns:repeat(2,1fr)}.spec{display:none}.fvr{display:none}}
 @media(max-width:760px){.agents,.regs{grid-template-columns:repeat(2,1fr)}.agents{gap:12px}.provs{flex-wrap:wrap}.side{display:none}.top-right .refer,.top-right .vline,.top-right .icons{display:none}.sizes{grid-template-columns:1fr}.foot{padding:0 16px}.fr{gap:16px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:2s!important}}
+
+/* dashboard navigation: left sidebar + top-bar icons (same as the dashboard) */
+.top-right .icons{width:132px;height:24px;display:block}
+.gside{position:fixed;top:48px;left:0;bottom:0;width:88px;border-right:1px solid #eff0f3;display:flex;flex-direction:column;justify-content:space-between;padding:20px 0;background:#fff;z-index:11;overflow-y:auto}
+.gside nav{display:flex;flex-direction:column;align-items:center;gap:12px}
+.gside a{display:block;border-radius:4px;transition:background .15s}
+.gside a:hover,.gside a.on{background:#f5f5fc}
+.gside img{display:block}
+@media(max-width:700px){.gside{display:none}.top-right .icons{display:none}}
+.stage{left:88px}
+.foot{left:88px}
+@media(max-width:700px){.stage,.foot{left:0}}
 </style>
 </head>
 <body>
 <header class="topbar">
   <a href="index.html" aria-label="Cloudways home"><img class="logo" src="assets/logo.png?v=4" alt="Cloudways by DigitalOcean"></a>
   <div class="top-right">
+    <img class="icons" src="assets/top-icons.svg" alt="">
+    <span class="vline"></span>
     <a class="user" href="login.html" title="Log out" aria-label="John Doe, log out"><img class="avatar" src="assets/avatar.png" alt=""><img class="chev" src="assets/chevron.svg" alt=""></a>
   </div>
 </header>
+<aside class="gside" aria-label="Main navigation">
+  <nav>
+    <a href="index.html"><img src="assets/nav-home.png?v=4" alt="Home" width="65"></a>
+    <a href="index.html#flex"><img src="assets/nav-flexible.png?v=4" alt="Flexible" width="65"></a>
+    <a href="index.html#auto"><img src="assets/nav-autonomous.png?v=4" alt="Autonomous" width="65"></a>
+    <a href="index.html#vel"><img src="assets/nav-velocity.png?v=4" alt="Velocity" width="65"></a>
+    <a href="index.html#ai" class="on" aria-current="page"><img src="assets/nav-ai.png?v=4" alt="Cloudways AI" width="66"></a>
+  </nav>
+  <nav>
+    <a href="api.html"><img src="assets/nav-integrations.png?v=4" alt="Integrations" width="65"></a>
+    <a href="#"><img src="assets/nav-support.png?v=4" alt="Support" width="65"></a>
+  </nav>
+</aside>
 <a href="launchpad.html" aria-label="Close" style="position:fixed;top:60px;right:20px;z-index:11;width:24px;height:24px;display:grid;place-items:center;border-radius:50%"><img src="assets/agents-onb/close.svg" alt="" width="22" height="22"></a>
 <main class="stage" id="stage"></main>
 <footer class="foot" id="foot"></footer>
