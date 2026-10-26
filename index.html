@@ -344,6 +344,16 @@ body[data-state=ai] .conv-only,body[data-state=ai] .ai-only{display:block}
 
 @media(max-width:1100px){.g4{grid-template-columns:repeat(2,1fr)}.g3,.g2{grid-template-columns:1fr}.qs{grid-template-columns:1fr}.qs .a1,.qs .a2{height:auto;aspect-ratio:563/270}}
 @media(max-width:700px){.side{display:none}.g4{grid-template-columns:1fr}.top-right .refer,.top-right .vline,.top-right .icons{display:none}}
+
+/* prototype controls float at the bottom so they don't read as part of the product UI */
+.demo-bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 24px);padding:6px 8px 6px 10px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 28px rgba(9,30,66,.18);overflow-x:auto}
+.demo-bar .switcher{flex-shrink:0;border-radius:6px}
+.demo-tag{font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--brand);background:var(--tint);border-radius:4px;padding:3px 6px;flex-shrink:0}
+.demo-x{width:22px;height:22px;border-radius:50%;font-size:16px;line-height:1;color:var(--body);flex-shrink:0}
+.demo-x:hover{background:var(--tint)}
+.demo-chip{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;padding:5px 12px;font-size:11px;color:var(--body);background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 4px 14px rgba(9,30,66,.14)}
+.demo-chip:hover{color:var(--brand)}
+body{padding-bottom:64px}
 </style>
 </head>
 <body data-state="empty">
@@ -362,21 +372,6 @@ if(sessionStorage.getItem('cw_splash')||/loading/.test(location.hash))document.d
 <header class="topbar">
   <img class="logo" src="assets/logo.png?v=4" alt="Cloudways by DigitalOcean">
   <div class="top-right">
-    <div class="switcher" role="tablist" aria-label="Dashboard state">
-      <button data-s="empty" class="on">Empty</button>
-      <button data-s="flex">Flexible</button>
-      <button data-s="auto">Autonomous</button>
-      <button data-s="vel">Velocity</button>
-      <button data-s="ai" title="AI Website Builder v2: tab in Recent Applications">AI Sites v2</button>
-      <span class="vline" style="height:16px;align-self:center;margin:0 4px"></span>
-      <button class="toggle" id="t-one" aria-pressed="false" title="Show a single application">1 app</button>
-      <button class="toggle" id="t-trial" aria-pressed="false" title="Show the free-trial state">Trial</button>
-      <button class="toggle" id="t-setup" aria-pressed="false" title="Show an app that is paid but not fully set up">Setup</button>
-      <button class="toggle" id="t-bfcm" aria-pressed="false" title="Black Friday / Cyber Monday offer (banner)">BFCM</button>
-      <button class="toggle" id="t-bfcm2" aria-pressed="false" title="Black Friday / Cyber Monday offer (full dark theme)">BFCM v2</button>
-      <button class="toggle" id="t-ai1" aria-pressed="false" title="AI Website Builder v1: Websites built with AI section">AI v1</button>
-      <button class="toggle" id="t-copilot" aria-pressed="false" title="Show the Cloudways Copilot incidents section">Copilot</button>
-    </div>
     <span class="refer"><img src="assets/refer.svg" alt="">Refer &amp; Get $50</span>
     <span class="vline"></span>
     <img class="icons" src="assets/top-icons.svg" alt="">
@@ -581,6 +576,26 @@ if(sessionStorage.getItem('cw_splash')||/loading/.test(location.hash))document.d
   </ul>
 </aside>
 
+<div class="demo-bar" id="demo-bar" role="region" aria-label="Prototype controls">
+  <span class="demo-tag">Demo</span>
+  <div class="switcher" role="tablist" aria-label="Dashboard state">
+    <button data-s="empty" class="on">Empty</button>
+    <button data-s="flex">Flexible</button>
+    <button data-s="auto">Autonomous</button>
+    <button data-s="vel">Velocity</button>
+    <button data-s="ai" title="AI Website Builder v2: tab in Recent Applications">AI Sites v2</button>
+    <span class="vline" style="height:16px;align-self:center;margin:0 4px"></span>
+    <button class="toggle" id="t-one" aria-pressed="false" title="Show a single application">1 app</button>
+    <button class="toggle" id="t-trial" aria-pressed="false" title="Show the free-trial state">Trial</button>
+    <button class="toggle" id="t-setup" aria-pressed="false" title="Show an app that is paid but not fully set up">Setup</button>
+    <button class="toggle" id="t-bfcm" aria-pressed="false" title="Black Friday / Cyber Monday offer (banner)">BFCM</button>
+    <button class="toggle" id="t-bfcm2" aria-pressed="false" title="Black Friday / Cyber Monday offer (full dark theme)">BFCM v2</button>
+    <button class="toggle" id="t-ai1" aria-pressed="false" title="AI Website Builder v1: Websites built with AI section">AI v1</button>
+    <button class="toggle" id="t-copilot" aria-pressed="false" title="Show the Cloudways Copilot incidents section">Copilot</button>
+  </div>
+  <button class="demo-x" id="demo-x" type="button" aria-label="Hide prototype controls" title="Hide">×</button>
+</div>
+<button class="demo-chip" id="demo-chip" type="button" aria-label="Show prototype controls" hidden>Demo controls</button>
 <script>
 const body=document.body;
 function setState(s){
@@ -754,6 +769,11 @@ window.addEventListener('hashchange',applyHash);
     },HOLD+350);
   });
 })();
+
+/* hide / show the floating prototype controls */
+(()=>{const bar=document.getElementById('demo-bar'),chip=document.getElementById('demo-chip');
+document.getElementById('demo-x').onclick=()=>{bar.hidden=true;chip.hidden=false};
+chip.onclick=()=>{bar.hidden=false;chip.hidden=true}})();
 </script>
 </body>
 </html>
