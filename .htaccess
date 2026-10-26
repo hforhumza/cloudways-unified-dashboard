@@ -1,0 +1,13 @@
+# Open the login screen at the site root (the dashboard lives at /index.html)
+DirectoryIndex login.html index.php index.html
+Options -Indexes
+
+# Always revalidate pages; let assets cache for a day
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(svg|png|jpg|jpeg|webp|mp4|woff2)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>
