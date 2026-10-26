@@ -269,6 +269,10 @@ main{margin-left:88px}
 .demo-bar .switcher a{padding:2px 10px;font-size:11px;border-radius:4px;color:#4b5971;text-decoration:none;white-space:nowrap}
 .demo-bar .switcher a:hover{background:#eaebf9}
 .demo-bar .switcher a.on{background:#2f39bf;color:#fff}
+.demo-bar .vsep{width:1px;height:16px;align-self:center;margin:0 4px;background:#dfe1e6}
+.demo-bar .tg{padding:2px 10px;font-size:11px;border-radius:4px;color:#4b5971;text-decoration:none;white-space:nowrap}
+.demo-bar a.tg:hover{background:#eaebf9}
+.demo-bar .tg.off{opacity:.4;cursor:not-allowed}
 .demo-x{width:22px;height:22px;border-radius:50%;font-size:16px;line-height:1;color:#4b5971;flex-shrink:0;background:none;border:0;cursor:pointer}
 .demo-x:hover{background:#f5f5fc}
 .demo-chip{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;padding:5px 12px;font-size:11px;color:#4b5971;background:#fff;border:1px solid #eff0f3;border-radius:14px;box-shadow:0 4px 14px rgba(9,30,66,.14);cursor:pointer}
@@ -791,6 +795,14 @@ $('#chips').onclick=e=>{const c=e.target.closest('.chip');if(!c)return;prompt.va
     <a href="index.html#auto">Autonomous</a>
     <a href="index.html#vel">Velocity</a>
     <a href="index.html#ai">AI Sites v2</a>
+    <span class="vsep"></span>
+    <span class="tg off" aria-disabled="true" title="Open Flexible or Autonomous to use this">1 app</span>
+    <span class="tg off" aria-disabled="true" title="Open Flexible or Autonomous to use this">Trial</span>
+    <span class="tg off" aria-disabled="true" title="Open Flexible or Autonomous to use this">Setup</span>
+    <a class="tg" href="index.html#flex+bfcm" title="Black Friday / Cyber Monday offer (banner)">BFCM</a>
+    <a class="tg" href="index.html#flex+bfcm2" title="Black Friday / Cyber Monday offer (full dark theme)">BFCM v2</a>
+    <span class="tg off" aria-disabled="true" title="Open Flexible or Autonomous to use this">AI v1</span>
+    <span class="tg off" aria-disabled="true" title="Open Flexible or Autonomous to use this">Copilot</span>
   </div>
   <button class="demo-x" id="demo-x" type="button" aria-label="Hide prototype controls" title="Hide">×</button>
 </div>
