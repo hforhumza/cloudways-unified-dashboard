@@ -600,6 +600,11 @@ if(sessionStorage.getItem('cw_splash')||/loading/.test(location.hash))document.d
 const body=document.body;
 function setState(s){
   if(s==='ai'&&body.dataset.aiv1==='on')s='flex';   // the AI tab doesn't exist in v1
+  // the Empty state is the Launch Pad (wait for the loading splash to finish first)
+  if(s==='empty'){
+    if(document.documentElement.classList.contains('splash-on'))window.__toLaunchpad=true;
+    else{location.replace('launchpad.html');return}
+  }
   body.dataset.state=s;
   document.querySelectorAll('.switcher button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.s===s));
@@ -754,6 +759,7 @@ window.addEventListener('hashchange',applyHash);
     i=n;
   }
   function finish(){
+    if(window.__toLaunchpad){location.replace('launchpad.html');return}
     splash.classList.add('leaving');
     setTimeout(()=>{root.classList.remove('splash-on');splash.classList.remove('leaving')},450);
   }

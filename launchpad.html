@@ -261,6 +261,19 @@ h2{font-size:16px;font-weight:500;line-height:24px}
 main{margin-left:88px}
 .w-foot{left:88px;padding-left:max(24px,calc((100vw - 88px - 1155px)/2));padding-right:max(24px,calc((100vw - 88px - 1155px)/2))}
 @media(max-width:700px){main{margin-left:0}.w-foot{left:0}}
+
+/* prototype controls: switch between the dashboard states (Empty = this Launch Pad) */
+.demo-bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 24px);padding:6px 8px 6px 10px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border:1px solid #eff0f3;border-radius:10px;box-shadow:0 8px 28px rgba(9,30,66,.18);overflow-x:auto}
+.demo-tag{font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#2f39bf;background:#f5f5fc;border-radius:4px;padding:3px 6px;flex-shrink:0}
+.demo-bar .switcher{display:flex;gap:2px;background:#f5f5fc;border:1px solid #eff0f3;border-radius:6px;padding:2px;flex-shrink:0}
+.demo-bar .switcher a{padding:2px 10px;font-size:11px;border-radius:4px;color:#4b5971;text-decoration:none;white-space:nowrap}
+.demo-bar .switcher a:hover{background:#eaebf9}
+.demo-bar .switcher a.on{background:#2f39bf;color:#fff}
+.demo-x{width:22px;height:22px;border-radius:50%;font-size:16px;line-height:1;color:#4b5971;flex-shrink:0;background:none;border:0;cursor:pointer}
+.demo-x:hover{background:#f5f5fc}
+.demo-chip{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;padding:5px 12px;font-size:11px;color:#4b5971;background:#fff;border:1px solid #eff0f3;border-radius:14px;box-shadow:0 4px 14px rgba(9,30,66,.14);cursor:pointer}
+.demo-chip:hover{color:#2f39bf}
+@media(max-width:700px){.demo-bar{display:none}}
 </style>
 </head>
 <body>
@@ -769,6 +782,23 @@ $('#chips').onclick=e=>{const c=e.target.closest('.chip');if(!c)return;prompt.va
   });
   addEventListener('scroll',hide,{passive:true});
 })();
+</script>
+<div class="demo-bar" id="demo-bar" role="region" aria-label="Prototype controls">
+  <span class="demo-tag">Demo</span>
+  <div class="switcher" aria-label="Dashboard state">
+    <a class="on" href="launchpad.html" aria-current="page">Empty</a>
+    <a href="index.html#flex">Flexible</a>
+    <a href="index.html#auto">Autonomous</a>
+    <a href="index.html#vel">Velocity</a>
+    <a href="index.html#ai">AI Sites v2</a>
+  </div>
+  <button class="demo-x" id="demo-x" type="button" aria-label="Hide prototype controls" title="Hide">×</button>
+</div>
+<button class="demo-chip" id="demo-chip" type="button" aria-label="Show prototype controls" hidden>Demo controls</button>
+<script>
+(()=>{const b=document.getElementById('demo-bar'),c=document.getElementById('demo-chip');
+document.getElementById('demo-x').onclick=()=>{b.hidden=true;c.hidden=false};
+c.onclick=()=>{b.hidden=false;c.hidden=true}})();
 </script>
 </body>
 </html>
